@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct FlashCardCohort8App: App {
+    @StateObject private var store = DeckStore()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                DeckListView()
+            }.environmentObject(store) // using enviroment Object to pass the parameters
         }
     }
 }
