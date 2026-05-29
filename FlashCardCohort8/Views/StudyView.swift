@@ -77,7 +77,12 @@ struct StudyView: View {
         .onAppear {
             startSession()
         }
-        
+        .onChange(of: cardsPerSession) { startSession() }
+        .onChange(of: shuffleCards) { startSession() }
+        .onChange(of: showBackFirst) {
+            // just reset flip so it feels consistent
+            isFlipped = false
+        }
     }//end of body
     //computed variable
     private var currentText:String {
@@ -86,7 +91,7 @@ struct StudyView: View {
         
         let card = sessionCards[index]
         
-        let showingFront = showBackFirst ? !isFlipped : !isFlipped
+        let showingFront = showBackFirst ? isFlipped : !isFlipped
         return showingFront ? card.front: card.back
     }
     

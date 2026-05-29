@@ -1,36 +1,24 @@
 //
-//  FlashcardModel.swift
+//  Flashcard.swift
 //  FlashCardCohort8
 //
-//  Created by Kit Sitou on 5/26/26.
+//  Created by Kit Sitou on 5/28/26.
 //
-
 import Foundation
 
-//model for decks
-struct Deck: Identifiable{
+//equatable = can be compare to the other type
+struct Flashcard:Identifiable, Codable, Equatable{
     
-    let id = UUID()
-    var name: String
-    var cards: Array<Flashcard>
-    var description: String
-    
-    //set for default
-    init(name: String, cards: Array<Flashcard>, description: String = "This is a new deck") {
-        self.name = name
-        self.cards = cards
-        self.description = description
-    }
-    
-}
-
-//model for flashcards
-struct Flashcard:Identifiable{
-    
-    let id: UUID = UUID()
+    let id: UUID
     var front: String
     var back: String
 //    var desc: String
     
+    
+    init(id:UUID = UUID(), front: String, back: String) {
+        self.id = id
+        self.front = front
+        self.back = back
+    }
     
 }
